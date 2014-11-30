@@ -79,4 +79,4 @@ You might also find these useful:
 
 ### License
 
-[MIT](LICENSE.md)
+[MIT](LICENSE)
