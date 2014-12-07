@@ -3,7 +3,7 @@
 Enables displaying cpu percentage and status icon in Tmux status-right.
 
 CPU:<br/>
-`CPU: ❏ 8.74592%`
+`CPU: ❏ 8.7%`
 
 This is done by introducing 2 new format strings that can be added to
 `status-right` option:
