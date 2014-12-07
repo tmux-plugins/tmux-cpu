@@ -24,7 +24,7 @@ Add plugin to the list of TPM plugins in `.tmux.conf`:
 
     set -g @tpm_plugins "             \
       tmux-plugins/tpm                \
-      ctjhoa/tmux-cpu                 \
+      tmux-plugins/tmux-cpu           \
     "
 
 Hit `prefix + I` to fetch the plugin and source it.
