@@ -7,9 +7,9 @@ source "$CURRENT_DIR/helpers.sh"
 print_cpu_percentage() {
 	if [ is_cygwin ]; then
 		usage="$(WMIC cpu get LoadPercentage | grep -Eo '^[0-9]+')"
-		printf "%.1f%%" $usage
+		printf "%5.1f%%" $usage
 	elif [ -e "/proc/stat" ]; then
-		grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {printf("%.1f%", usage)}'
+		grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {printf("%5.1f%", usage)}'
 	elif [ is_osx ]; then
 		iostat -w 1 -c 2 -n 1 | tail -1 | awk '{usage=100-$6} END {printf("%d%%",usage)}';
 	fi
