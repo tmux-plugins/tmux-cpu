@@ -5,7 +5,7 @@ CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 source "$CURRENT_DIR/helpers.sh"
 
 print_cpu_percentage() {
-	if [ is_cygwin ]; then
+	if is_cygwin; then
 		usage="$(WMIC cpu get LoadPercentage | grep -Eo '^[0-9]+')"
 		printf "%5.1f%%" $usage
 	elif [ -e "/proc/stat" ]; then
