@@ -22,10 +22,8 @@ Add `#{cpu_icon}` or `#{cpu_percentage}` format strings to existing
 
 Add plugin to the list of TPM plugins in `.tmux.conf`:
 
-    set -g @tpm_plugins "             \
-      tmux-plugins/tpm                \
-      tmux-plugins/tmux-cpu           \
-    "
+    set -g @plugin 'tmux-plugins/tpm'
+    set -g @plugin 'tmux-plugins/tmux-cpu'
 
 Hit `prefix + I` to fetch the plugin and source it.
 
