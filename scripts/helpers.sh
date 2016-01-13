@@ -13,6 +13,10 @@ is_osx() {
 	[ $(uname) == "Darwin" ]
 }
 
+is_freebsd() {
+	[ $(uname) == "FreeBSD" ]
+}
+
 is_cygwin() {
 	command -v WMIC > /dev/null
 }
