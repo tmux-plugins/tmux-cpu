@@ -18,10 +18,14 @@ is_freebsd() {
 }
 
 is_cygwin() {
-	command -v WMIC > /dev/null
+	command -v WMIC &> /dev/null
+}
+
+is_linux_iostat() {
+	iostat -V &> /dev/null
 }
 
 command_exists() {
 	local command="$1"
-	type "$command" >/dev/null 2>&1
+	command -v "$command" &> /dev/null
 }
