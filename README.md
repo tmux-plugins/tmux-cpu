@@ -18,6 +18,12 @@ Add `#{cpu_icon}` or `#{cpu_percentage}` format strings to existing
     # in .tmux.conf
     set -g status-right "CPU: #{cpu_icon} #{cpu_percentage} | %a %h-%d %H:%M "
 
+### Optional requirement (Linux, BSD, OSX)
+
+`iostat` is the best way to get an accurate cpu percentage
+
+A fallback is included using `ps -aux` but could be inaccurate.
+
 ### Installation with [Tmux Plugin Manager](https://github.com/tmux-plugins/tpm) (recommended)
 
 Add plugin to the list of TPM plugins in `.tmux.conf`:

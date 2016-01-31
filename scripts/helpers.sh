@@ -17,12 +17,24 @@ is_freebsd() {
 	[ $(uname) == "FreeBSD" ]
 }
 
+is_linux() {
+	[ $(uname) == "Linux" ]
+}
+
 is_cygwin() {
 	command -v WMIC &> /dev/null
 }
 
 is_linux_iostat() {
 	iostat -V &> /dev/null
+}
+
+cpus_number() {
+	if is_linux; then
+		nproc
+	else
+		sysctl -n hw.ncpu
+	fi
 }
 
 command_exists() {
