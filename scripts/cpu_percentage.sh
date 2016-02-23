@@ -8,7 +8,7 @@ print_cpu_percentage() {
 	if command_exists "iostat"; then
 
 		if is_linux_iostat; then
-			iostat -c | tr -s ' ' ';' | grep -e '^;' |  cut -d ';' -f 2 | awk '{print $1"%"}'
+			iostat -cy 1 1 | tr -s ' ' ';' | grep -e '^;' |  cut -d ';' -f 2 | awk '{print $1"%"}'
 		elif is_osx; then
 			iostat | tail -1 | tr -s ' ' ';' | sed -e 's/^;//' | cut -d ';' -f 9 | awk '{print $1"%"}'
 		elif is_freebsd; then
