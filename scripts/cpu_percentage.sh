@@ -8,11 +8,11 @@ print_cpu_percentage() {
 	if command_exists "iostat"; then
 
 		if is_linux_iostat; then
-			iostat -cy 1 1 | tr -s ' ' ';' | grep -e '^;' |  cut -d ';' -f 7 | awk '{usage=100-$1} END {printf("%5.1f%", usage)}'
+			iostat -cy 1 1 | tr -s ' ' ';' | grep -e '^;' |  cut -d ';' -f 7 | awk '{usage=100-$1} END {printf("%5.1f%%", usage)}'
 		elif is_osx; then
-			iostat -c 2 | tail -n 1 | tr -s ' ' ';' | cut -d ';' -f 7 | awk '{usage=100-$1} END {printf("%5.1f%", usage)}'
+			iostat -c 2 | tail -n 1 | tr -s ' ' ';' | cut -d ';' -f 7 | awk '{usage=100-$1} END {printf("%5.1f%%", usage)}'
 		elif is_freebsd; then
-			iostat -c 2 | tail -n 1 | tr -s ' ' ';' | cut -d ';' -f 7 | awk '{usage=100-$1} END {printf("%5.1f%", usage)}'
+			iostat -c 2 | tail -n 1 | tr -s ' ' ';' | cut -d ';' -f 11 | awk '{usage=100-$1} END {printf("%5.1f%%", usage)}'
 		elif [ -e "/proc/stat" ]; then
 			grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {printf("%5.1f%", usage)}'
 		fi
@@ -25,7 +25,7 @@ print_cpu_percentage() {
 		else
 			load=`ps -aux | awk '{print $3}' | tail -n+2 | awk '{s+=$1} END {print s}'`
 			cpus=$(cpus_number)
-			echo "$load $cpus" | awk '{printf "%5.2f%", $1/$2}'
+			echo "$load $cpus" | awk '{printf "%5.2f%%", $1/$2}'
 		fi
 	fi
 }
