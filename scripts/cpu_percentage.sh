@@ -8,14 +8,16 @@ print_cpu_percentage() {
 	if command_exists "iostat"; then
 
 		if is_linux_iostat; then
-			iostat -c | tr -s ' ' ';' | grep -e '^;' |  cut -d ';' -f 2 | awk '{print $1"%"}'
+			iostat -cy 1 1 | tr -s ' ' ';' | grep -e '^;' |  cut -d ';' -f 7 | awk '{usage=100-$1} END {printf("%5.1f%", usage)}'
 		elif is_osx; then
-			iostat | tail -1 | tr -s ' ' ';' | sed -e 's/^;//' | cut -d ';' -f 9 | awk '{print $1"%"}'
+			iostat -c 2 | tail -n 1 | tr -s ' ' ';' | cut -d ';' -f 7 | awk '{usage=100-$1} END {printf("%5.1f%", usage)}'
 		elif is_freebsd; then
-			iostat | tail -1 | tr -s ' ' ';' | sed -e 's/^;//' | cut -d ';' -f 13 | awk '{print $1"%"}'
+			iostat -c 2 | tail -n 1 | tr -s ' ' ';' | cut -d ';' -f 7 | awk '{usage=100-$1} END {printf("%5.1f%", usage)}'
 		elif [ -e "/proc/stat" ]; then
 			grep 'cpu ' /proc/stat | awk '{usage=($2+$4)*100/($2+$4+$5)} END {printf("%5.1f%", usage)}'
 		fi
+	elif command_exists "sar"; then
+		sar -u 1 1 | tail -n 1 | tr -s ' ' ';' | cut -d ';' -f 8 | awk '{usage=100-$1} END {printf("%5.1f%", usage)}'
 	else
 		if is_cygwin; then
 			usage="$(WMIC cpu get LoadPercentage | grep -Eo '^[0-9]+')"
