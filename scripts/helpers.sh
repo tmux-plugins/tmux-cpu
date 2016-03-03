@@ -26,7 +26,8 @@ is_cygwin() {
 }
 
 is_linux_iostat() {
-	iostat -V &> /dev/null
+	# Bug in early versions of linux iostat -V return error code
+	iostat -c &> /dev/null
 }
 
 cpus_number() {
