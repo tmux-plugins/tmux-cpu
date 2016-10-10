@@ -20,7 +20,7 @@ Add `#{cpu_icon}` or `#{cpu_percentage}` format strings to existing
 
 ### Optional requirement (Linux, BSD, OSX)
 
-`iostat` is the best way to get an accurate cpu percentage
+`iostat` or `sar` are the best way to get an accurate cpu percentage
 
 A fallback is included using `ps -aux` but could be inaccurate.
 
