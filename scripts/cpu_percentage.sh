@@ -11,7 +11,7 @@ print_cpu_percentage() {
 			iostat -c 1 2 | tail -n 2 | head -n 1 | awk '{usage=100-$NF} END {printf("%5.1f%%", usage)}'
 		elif is_osx; then
 			iostat -c 2 disk0 | tail -n 1 | awk '{usage=100-$6} END {printf("%5.1f%%", usage)}'
-		elif is_freebsd; then
+		elif is_freebsd || is_openbsd; then
 			iostat -c 2 | tail -n 1 | awk '{usage=100-$NF} END {printf("%5.1f%%", usage)}'
 		else
 			echo "Unknown iostat version please create an issue"

@@ -17,6 +17,10 @@ is_freebsd() {
 	[ $(uname) == "FreeBSD" ]
 }
 
+is_openbsd() {
+	[ $(uname) == "OpenBSD" ]
+}
+
 is_linux() {
 	[ $(uname) == "Linux" ]
 }
