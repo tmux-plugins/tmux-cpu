@@ -4,10 +4,18 @@ CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 
 source "$CURRENT_DIR/scripts/helpers.sh"
 
-cpu_percentage="#($CURRENT_DIR/scripts/cpu_percentage.sh)"
-cpu_icon="#($CURRENT_DIR/scripts/cpu_icon.sh)"
-cpu_percentage_interpolation="\#{cpu_percentage}"
-cpu_icon_interpolation="\#{cpu_icon}"
+cpu_interpolation=(
+	"\#{cpu_percentage}"
+	"\#{cpu_icon}"
+	"\#{cpu_bg_color}"
+	"\#{cpu_fg_color}"
+)
+cpu_commands=(
+	"#($CURRENT_DIR/scripts/cpu_percentage.sh)"
+	"#($CURRENT_DIR/scripts/cpu_icon.sh)"
+	"#($CURRENT_DIR/scripts/cpu_bg_color.sh)"
+	"#($CURRENT_DIR/scripts/cpu_fg_color.sh)"
+)
 
 set_tmux_option() {
 	local option=$1
@@ -16,10 +24,11 @@ set_tmux_option() {
 }
 
 do_interpolation() {
-	local string=$1
-	local percentage_interpolated=${string/$cpu_percentage_interpolation/$cpu_percentage}
-	local all_interpolated=${percentage_interpolated/$cpu_icon_interpolation/$cpu_icon}
-	echo $all_interpolated
+	local all_interpolated="$1"
+	for ((i=0; i<${#cpu_commands[@]}; i++)); do
+		all_interpolated=${all_interpolated/${cpu_interpolation[$i]}/${cpu_commands[$i]}}
+	done
+	echo "$all_interpolated"
 }
 
 update_tmux_option() {
