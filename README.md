@@ -47,17 +47,17 @@ Example:
 
 
 ## Examples
-CPU higher than 80%:<br/>
+CPU usage lower than 30%:<br/>
 ![low_fg](/screenshots/low_fg.png)
 ![low_bg](/screenshots/low_bg.png)
 ![low_icon](/screenshots/low_icon.png)
 
-CPU between 30% and 80%:<br/>
+CPU usage between 30% and 80%:<br/>
 ![medium_fg](/screenshots/medium_fg.png)
 ![medium_bg](/screenshots/medium_bg.png)
 ![medium_icon](/screenshots/medium_icon.png)
 
-CPU lower than 30%:<br/>
+CPU usage higher than 80%:<br/>
 ![high_fg](/screenshots/high_fg.png)
 ![high_bg](/screenshots/high_bg.png)
 ![high_icon](/screenshots/high_icon.png)
