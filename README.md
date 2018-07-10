@@ -1,4 +1,4 @@
-# Tmux CPU status
+# Tmux CPU and GPU status
 
 Enables displaying CPU and GPU information in Tmux `status-right` and `status-left`.
 Configurable percentage and icon display.
@@ -33,9 +33,9 @@ If format strings are added to `status-right`, they should now be visible.
 
 ### Optional requirement (Linux, BSD, OSX)
 
-`iostat` or `sar` are the best way to get an accurate CPU percentage
-
+`iostat` or `sar` are the best way to get an accurate CPU percentage.
 A fallback is included using `ps -aux` but could be inaccurate.
+`nvidia-smi` is required for GPU information.
 
 ## Usage
 
@@ -47,14 +47,20 @@ Example:
 
 ### Supported Options
 
-This is done by introducing 5 new format strings that can be added to
+This is done by introducing 8 new format strings that can be added to
 `status-right` option:
 
  - `#{cpu_icon}` - will display a CPU status icon
- - `#{cpu_percentage}` - will show CPU percentage
- - `#{cpu_bg_color}` - will set the background color of the status bar based on the CPU percentage
- - `#{cpu_fg_color}` - will set the foreground color of the status bar based on the CPU percentage
- - `#{gpu_percentage}` - will show average `nvidia` GPU percentage
+ - `#{cpu_percentage}` - will show CPU percentage (averaged across cores)
+ - `#{cpu_bg_color}` - will change the background color based on the CPU percentage
+ - `#{cpu_fg_color}` - will change the foreground color based on the CPU percentage
+
+GPU equivalents also exist:
+
+ - `#{gpu_icon}` - will display a GPU status icon
+ - `#{gpu_percentage}` - will show GPU percentage (averaged across devices)
+ - `#{gpu_bg_color}` - will change the background color based on the GPU percentage
+ - `#{gpu_fg_color}` - will change the foreground color based on the GPU percentage
 
 ## Examples
 
