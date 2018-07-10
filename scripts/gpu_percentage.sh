@@ -9,7 +9,7 @@ print_gpu_percentage() {
 		loads=$(nvidia-smi | sed -nr 's/.*\s([0-9]+)%.*/\1/p')
 		gpus=$(echo "$loads" | wc -l)
 		load=$(echo "$loads" | awk '{count+=$1} END {print count}')
-		echo "$load $gpus" | awk '{printf "%2.0f%%", $1/$2}'
+		echo "$load $gpus" | awk '{printf "%3.0f%%", $1/$2}'
 	else
 		echo "nvidia-smi not found"
 	fi
