@@ -22,7 +22,7 @@ print_cpu_percentage() {
 		if is_cygwin; then
 			usage="$(WMIC cpu get LoadPercentage | grep -Eo '^[0-9]+')"
 			printf "%5.1f%%" $usage
-		else
+		elif is_linux; then
 			load=`top -bn 1 | awk 'NR>7{s+=$9} END {print s}'`
 			cpus=$(cpus_number)
 			echo "$load $cpus" | awk '{printf "%5.2f%%", $1/$2}'
