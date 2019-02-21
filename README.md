@@ -36,6 +36,8 @@ If format strings are added to `status-right`, they should now be visible.
 `iostat` or `sar` are the best way to get an accurate CPU percentage.
 A fallback is included using `ps -aux` but could be inaccurate.
 `nvidia-smi` is required for GPU information.
+For OSX, `cuda-smi` is required instead (but only shows GPU memory use rather
+than load).
 
 ## Usage
 
@@ -128,4 +130,3 @@ twitter if you want to hear about new tmux plugins or feature updates.
 ### License
 
 [MIT](LICENSE.md)
-
