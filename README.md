@@ -120,9 +120,6 @@ after you do this.
 
 This plugin is part of the [tmux-plugins](https://github.com/tmux-plugins) organisation. Checkout plugins as [battery](https://github.com/tmux-plugins/tmux-battery), [logging](https://github.com/tmux-plugins/tmux-logging), [online status](https://github.com/tmux-plugins/tmux-online-status), and many more over at the [tmux-plugins](https://github.com/tmux-plugins) organisation page.
 
-You might want to follow [@brunosutic](https://twitter.com/brunosutic) on
-twitter if you want to hear about new tmux plugins or feature updates.
-
 ### Maintainer
 
  - [Camille Tjhoa](https://github.com/ctjhoa)
