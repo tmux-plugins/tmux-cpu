@@ -85,20 +85,20 @@ CPU usage higher than 80%:<br/>
 
 Here are all available options with their default values:
 
-```
-@cpu_low_icon "="
-@cpu_medium_icon "≡"
-@cpu_high_icon "≣"
+```shell
+@cpu_low_icon "=" # icon when cpu is low
+@cpu_medium_icon "≡" # icon when cpu is medium
+@cpu_high_icon "≣" # icon when cpu is high
 
-@cpu_low_fg_color ""
-@cpu_medium_fg_color ""
-@cpu_high_fg_color ""
+@cpu_low_fg_color "" # foreground color when cpu is low
+@cpu_medium_fg_color "" # foreground color when cpu is medium
+@cpu_high_fg_color "" # foreground color when cpu is high
 
-@cpu_low_bg_color "#[bg=green]"
-@cpu_medium_bg_color "#[bg=yellow]"
-@cpu_high_bg_color "#[bg=red]"
+@cpu_low_bg_color "#[bg=green]" # background color when cpu is low
+@cpu_medium_bg_color "#[bg=yellow]" # background color when cpu is medium
+@cpu_high_bg_color "#[bg=red]" # background color when cpu is high
 
-@cpu_percentage_format "%3.1f%%" # printf format
+@cpu_percentage_format "%3.1f%%" # printf format to use to display percentage
 ```
 
 Same options are valid with `@gpu`
