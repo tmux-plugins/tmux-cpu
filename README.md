@@ -81,39 +81,34 @@ CPU usage higher than 80%:<br/>
 ![high_bg](/screenshots/high_bg.png)
 ![high_icon](/screenshots/high_icon.png)
 
-## Changing default
+## Customization
 
-By default, these icons are displayed:
+Here are all available options with their default values:
 
- - low: "="
- - medium: "≡"
- - high: "≣"
+```
+@cpu_low_icon "="
+@cpu_medium_icon "≡"
+@cpu_high_icon "≣"
 
-And these colors are used:
+@cpu_low_fg_color "#[fg=green]"
+@cpu_medium_fg_color "#[fg=yellow]"
+@cpu_high_fg_color "#[fg=red]"
 
- - low: `#[fg=green]` `#[bg=green]`
- - medium: `#[fg=yellow]` `#[bg=yellow]`
- - high: `#[fg=red]` `#[bg=red]`
+@cpu_low_bg_color "#[bg=green]"
+@cpu_medium_bg_color "#[bg=yellow]"
+@cpu_high_bg_color "#[bg=red]"
 
-Note that these colors depend on your terminal / X11 config.
-
-You can change these defaults by adding the following to `.tmux.conf`:
-
-```shell
-set -g @cpu_low_icon "ᚋ"
-set -g @cpu_medium_icon "ᚌ"
-set -g @cpu_high_icon "ᚍ"
-
-set -g @cpu_low_fg_color "#[fg=#00ff00]"
-set -g @cpu_medium_fg_color "#[fg=#ffff00]"
-set -g @cpu_high_fg_color "#[fg=#ff0000]"
-
-set -g @cpu_low_bg_color "#[bg=#00ff00]"
-set -g @cpu_medium_bg_color "#[bg=#ffff00]"
-set -g @cpu_high_bg_color "#[bg=#ff0000]"
 ```
 
 Same options are valid with `@gpu`
+
+Note that these colors depend on your terminal / X11 config.
+
+You can can customize each one of these options in your `.tmux.conf`, for example:
+
+```shell
+set -g @cpu_low_fg_color "#[fg=#00ff00]"
+```
 
 Don't forget to reload tmux environment (`$ tmux source-file ~/.tmux.conf`)
 after you do this.
