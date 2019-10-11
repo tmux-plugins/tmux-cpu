@@ -90,9 +90,9 @@ Here are all available options with their default values:
 @cpu_medium_icon "≡"
 @cpu_high_icon "≣"
 
-@cpu_low_fg_color "#[fg=green]"
-@cpu_medium_fg_color "#[fg=yellow]"
-@cpu_high_fg_color "#[fg=red]"
+@cpu_low_fg_color ""
+@cpu_medium_fg_color ""
+@cpu_high_fg_color ""
 
 @cpu_low_bg_color "#[bg=green]"
 @cpu_medium_bg_color "#[bg=yellow]"
