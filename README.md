@@ -99,7 +99,7 @@ Note that these colors depend on your terminal / X11 config.
 
 You can change these defaults by adding the following to `.tmux.conf`:
 
-```
+```shell
 set -g @cpu_low_icon "ᚋ"
 set -g @cpu_medium_icon "ᚌ"
 set -g @cpu_high_icon "ᚍ"
