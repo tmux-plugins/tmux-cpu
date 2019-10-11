@@ -98,6 +98,7 @@ Here are all available options with their default values:
 @cpu_medium_bg_color "#[bg=yellow]"
 @cpu_high_bg_color "#[bg=red]"
 
+@cpu_percentage_format "%3.1f%%" # printf format
 ```
 
 Same options are valid with `@gpu`
@@ -108,6 +109,7 @@ You can can customize each one of these options in your `.tmux.conf`, for exampl
 
 ```shell
 set -g @cpu_low_fg_color "#[fg=#00ff00]"
+set -g @cpu_percentage_format "%5.1f%%" # Add left padding
 ```
 
 Don't forget to reload tmux environment (`$ tmux source-file ~/.tmux.conf`)
