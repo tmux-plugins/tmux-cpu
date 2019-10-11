@@ -113,6 +113,8 @@ set -g @cpu_medium_bg_color "#[bg=#ffff00]"
 set -g @cpu_high_bg_color "#[bg=#ff0000]"
 ```
 
+Same options are valid with `@gpu`
+
 Don't forget to reload tmux environment (`$ tmux source-file ~/.tmux.conf`)
 after you do this.
 
