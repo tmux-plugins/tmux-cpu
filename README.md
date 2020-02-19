@@ -39,6 +39,9 @@ A fallback is included using `ps -aux` but could be inaccurate.
 For OSX, `cuda-smi` is required instead (but only shows GPU memory use rather
 than load).
 
+If 'No GPU' is displayed, it means the script was not able to find `nvidia-smi`/`cuda-smi`.
+Please make sure the appropriate command is installed and in PATH.
+
 ## Usage
 
 Add any of the supported format strings (see below) to the existing `status-right` tmux option.
