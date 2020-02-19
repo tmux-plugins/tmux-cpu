@@ -14,7 +14,7 @@ print_gpu_percentage() {
   elif command_exists "cuda-smi"; then
     loads=$(cuda-smi)
   else
-    echo "nvidia-smi/cuda-smi not found"
+    echo "No GPU"
     return
   fi
   loads=$(echo "$loads" | sed -nr 's/.*\s([0-9]+)%.*/\1/p')
