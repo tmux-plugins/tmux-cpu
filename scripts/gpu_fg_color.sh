@@ -8,9 +8,9 @@ gpu_low_fg_color=""
 gpu_medium_fg_color=""
 gpu_high_fg_color=""
 
-gpu_low_default_fg_color="#[fg=green]"
-gpu_medium_default_fg_color="#[fg=yellow]"
-gpu_high_default_fg_color="#[fg=red]"
+gpu_low_default_fg_color="#[fg=colour10]"
+gpu_medium_default_fg_color="#[fg=colour3]"
+gpu_high_default_fg_color="#[fg=colour1]"
 
 get_fg_color_settings() {
   gpu_low_fg_color=$(get_tmux_option "@gpu_low_fg_color" "$gpu_low_default_fg_color")

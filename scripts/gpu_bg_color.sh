@@ -8,9 +8,9 @@ gpu_low_bg_color=""
 gpu_medium_bg_color=""
 gpu_high_bg_color=""
 
-gpu_low_default_bg_color="#[bg=green]"
-gpu_medium_default_bg_color="#[bg=yellow]"
-gpu_high_default_bg_color="#[bg=red]"
+gpu_low_default_bg_color="#[bg=colour10]"
+gpu_medium_default_bg_color="#[bg=colour3]"
+gpu_high_default_bg_color="#[bg=colour1]"
 
 get_bg_color_settings() {
   gpu_low_bg_color=$(get_tmux_option "@gpu_low_bg_color" "$gpu_low_default_bg_color")
