@@ -39,7 +39,7 @@ fcomp() {
   awk -v n1=$1 -v n2=$2 'BEGIN {if (n1<n2) exit 0; exit 1}'
 }
 
-cpu_load_status() {
+load_status() {
   local percentage=$1
   if fcomp 80 $percentage; then
     echo "high"

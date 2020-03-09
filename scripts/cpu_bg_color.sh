@@ -20,12 +20,12 @@ get_bg_color_settings() {
 
 print_bg_color() {
   local cpu_percentage=$($CURRENT_DIR/cpu_percentage.sh | sed -e 's/%//')
-  local cpu_load_status=$(cpu_load_status $cpu_percentage)
-  if [ $cpu_load_status == "low" ]; then
+  local load_status=$(load_status $cpu_percentage)
+  if [ $load_status == "low" ]; then
     echo "$cpu_low_bg_color"
-  elif [ $cpu_load_status == "medium" ]; then
+  elif [ $load_status == "medium" ]; then
     echo "$cpu_medium_bg_color"
-  elif [ $cpu_load_status == "high" ]; then
+  elif [ $load_status == "high" ]; then
     echo "$cpu_high_bg_color"
   fi
 }
