@@ -71,6 +71,10 @@ GPU equivalents also exist:
  - `#{gpu_percentage}` - will show GPU percentage (averaged across devices)
  - `#{gpu_bg_color}` - will change the background color based on the GPU percentage
  - `#{gpu_fg_color}` - will change the foreground color based on the GPU percentage
+ - `#{gram_icon}` - will display a GPU RAM status icon
+ - `#{gram_percentage}` - will show GPU RAM percentage (total across devices)
+ - `#{gram_bg_color}` - will change the background color based on the GPU RAM percentage
+ - `#{gram_fg_color}` - will change the foreground color based on the GPU RAM percentage
 
 ## Examples
 
