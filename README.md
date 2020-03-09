@@ -35,6 +35,7 @@ If format strings are added to `status-right`, they should now be visible.
 
 `iostat` or `sar` are the best way to get an accurate CPU percentage.
 A fallback is included using `ps -aux` but could be inaccurate.
+`free` is used for obtaining system RAM status.
 `nvidia-smi` is required for GPU information.
 For OSX, `cuda-smi` is required instead (but only shows GPU memory use rather
 than load).
@@ -59,6 +60,10 @@ This is done by introducing 8 new format strings that can be added to
  - `#{cpu_percentage}` - will show CPU percentage (averaged across cores)
  - `#{cpu_bg_color}` - will change the background color based on the CPU percentage
  - `#{cpu_fg_color}` - will change the foreground color based on the CPU percentage
+ - `#{ram_icon}` - will display a RAM status icon
+ - `#{ram_percentage}` - will show RAM percentage (averaged across cores)
+ - `#{ram_bg_color}` - will change the background color based on the RAM percentage
+ - `#{ram_fg_color}` - will change the foreground color based on the RAM percentage
 
 GPU equivalents also exist:
 
