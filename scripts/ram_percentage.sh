@@ -6,10 +6,8 @@ source "$CURRENT_DIR/helpers.sh"
 
 ram_percentage_format="%3.1f%%"
 
-
 sum_macos_vm_stats() {
-  cat - \
-  | grep -o [0-9]* \
+  grep -o '[0-9]*' \
   | awk '{ a += $1 * 4096 } END { print a }' 
 }
 
@@ -20,7 +18,7 @@ print_ram_percentage() {
     free | awk -v format="$ram_percentage_format" '$1 == "Mem:" {printf(format, 100*$3/$2)}'
   elif command_exists "vm_stat"; then
     # page size of 4096 bytes
-    stats=$(vm_stat)
+    stats="$(vm_stat)"
 
     used_and_cached=$(echo "$stats" \
       | grep -E "(Pages active|Pages inactive|Pages speculative|Pages wired down|Pages occupied by compressor)" \
