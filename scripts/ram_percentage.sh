@@ -10,8 +10,7 @@ ram_percentage_format="%3.1f%%"
 sum_macos_vm_stats() {
   cat - \
   | perl -pe "s/^[^\d]*([\d]*)\./\1/g"  \
-  | awk '{ print $1 * 4096 }' \
-  | awk '{ a += $1 } END { print a }' 
+  | awk '{ a += $1 * 4096 } END { print a }' 
 }
 
 print_ram_percentage() {
