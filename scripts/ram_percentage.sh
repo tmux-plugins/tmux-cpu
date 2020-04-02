@@ -6,30 +6,6 @@ source "$CURRENT_DIR/helpers.sh"
 
 ram_percentage_format="%3.1f%%"
 
-# macos vm_stat sample
-# Mach Virtual Memory Statistics: (page size of 4096 bytes)
-# Pages free:                               91122.
-# Pages active:                           1492064.
-# Pages inactive:                         1471069.
-# Pages speculative:                        25487.
-# Pages throttled:                              0.
-# Pages wired down:                        866263.
-# Pages purgeable:                         106819.
-# "Translation faults":                 757779378.
-# Pages copy-on-write:                   88220937.
-# Pages zero filled:                    286952409.
-# Pages reactivated:                       535355.
-# Pages purged:                           1462986.
-# File-backed pages:                       710060.
-# Anonymous pages:                        2278560.
-# Pages stored in compressor:              612786.
-# Pages occupied by compressor:            248063.
-# Decompressions:                         1400918.
-# Compressions:                           2034985.
-# Pageins:                                5227063.
-# Pageouts:                                  1998.
-# Swapins:                                1319876.
-# Swapouts:                               1402641.
 
 sum_macos_vm_stats() {
   cat - \
