@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+export LANG=C
 
 source "$CURRENT_DIR/helpers.sh"
 
@@ -15,7 +16,7 @@ print_ram_percentage() {
   ram_percentage_format=$(get_tmux_option "@ram_percentage_format" "$ram_percentage_format")
 
   if command_exists "free"; then
-    free | awk -v format="$ram_percentage_format" '$1 == "Mem:" {printf(format, 100*$3/$2)}'
+    free | awk -v format="$ram_percentage_format" '$1 ~ /Mem/ {printf(format, 100*$3/$2)}'
   elif command_exists "vm_stat"; then
     # page size of 4096 bytes
     stats="$(vm_stat)"
