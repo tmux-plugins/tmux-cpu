@@ -8,7 +8,7 @@ source "$CURRENT_DIR/helpers.sh"
 ram_percentage_format="%3.1f%%"
 
 sum_macos_vm_stats() {
-  grep -o '[0-9]*' \
+  grep -Eo '[0-9]+' \
   | awk '{ a += $1 * 4096 } END { print a }' 
 }
 
