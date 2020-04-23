@@ -34,9 +34,9 @@ is_linux_iostat() {
   iostat -c &> /dev/null
 }
 
-# is second float bigger?
+# is second float bigger or equal?
 fcomp() {
-  awk -v n1=$1 -v n2=$2 'BEGIN {if (n1<n2) exit 0; exit 1}'
+  awk -v n1=$1 -v n2=$2 'BEGIN {if (n1<=n2) exit 0; exit 1}'
 }
 
 load_status() {
