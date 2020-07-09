@@ -10,9 +10,9 @@ print_gpu_percentage() {
   gpu_percentage_format=$(get_tmux_option "@gpu_percentage_format" "$gpu_percentage_format")
 
   if command_exists "nvidia-smi"; then
-    loads=$(nvidia-smi)
+    loads=$(cached_eval nvidia-smi)
   elif command_exists "cuda-smi"; then
-    loads=$(cuda-smi)
+    loads=$(cached_eval cuda-smi)
   else
     echo "No GPU"
     return
