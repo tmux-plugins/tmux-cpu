@@ -70,7 +70,7 @@ get_tmp_dir() {
 }
 
 get_time() {
-  date +%s
+  date +%s.%N
 }
 
 get_cache_val(){
