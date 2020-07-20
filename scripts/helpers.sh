@@ -64,7 +64,9 @@ command_exists() {
 }
 
 get_tmp_dir() {
-  echo "${TMPDIR:-/tmp}/tmux-$EUID-cpu"
+  local tmpdir="${TMPDIR:-${TMP:-${TEMP:-/tmp}}}"
+  [ -d "$tmpdir" ] || local tmpdir=~/tmp
+  echo "$tmpdir/tmux-$EUID-cpu"
 }
 
 get_time() {
