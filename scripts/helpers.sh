@@ -62,3 +62,46 @@ command_exists() {
   local command="$1"
   command -v "$command" &> /dev/null
 }
+
+get_tmp_dir() {
+  local tmpdir="${TMPDIR:-${TMP:-${TEMP:-/tmp}}}"
+  [ -d "$tmpdir" ] || local tmpdir=~/tmp
+  echo "$tmpdir/tmux-$EUID-cpu"
+}
+
+get_time() {
+  date +%s.%N
+}
+
+get_cache_val(){
+  local key="$1"
+  # seconds after which cache is invalidated
+  local timeout="${2:-2}"
+  local cache="$(get_tmp_dir)/$key"
+  if [ -f "$cache" ]; then
+    awk -v cache="$(head -n1 "$cache")" -v timeout=$timeout -v now=$(get_time) \
+      'BEGIN {if (now - timeout < cache) exit 0; exit 1}' \
+      && tail -n+2 "$cache"
+  fi
+}
+
+put_cache_val(){
+  local key="$1"
+  local val="${@:2}"
+  local tmpdir="$(get_tmp_dir)"
+  [ ! -d "$tmpdir" ] && mkdir -p "$tmpdir" && chmod 0700 "$tmpdir"
+  echo "$(get_time)" > "$tmpdir/$key"
+  echo -n "$val" >> "$tmpdir/$key"
+  echo -n "$val"
+}
+
+cached_eval(){
+  local command="$1"
+  local key="$(basename "$command")"
+  local val="$(get_cache_val "$key")"
+  if [ -z "$val" ]; then
+    put_cache_val "$key" "$($command "${@:2}")"
+  else
+    echo -n "$val"
+  fi
+}
