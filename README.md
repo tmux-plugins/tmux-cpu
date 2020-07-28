@@ -60,6 +60,10 @@ This is done by introducing 8 new format strings that can be added to
  - `#{cpu_percentage}` - will show CPU percentage (averaged across cores)
  - `#{cpu_bg_color}` - will change the background color based on the CPU percentage
  - `#{cpu_fg_color}` - will change the foreground color based on the CPU percentage
+ - `#{load}` - will display your current load averages (1, 5 and 15 minutes)
+ - `#{load1}` - will display the load average of the last minute
+ - `#{load5}` - will display the load average of the last 5 minutes
+ - `#{load15}` - will display the load average of the last 15 minutes
  - `#{ram_icon}` - will display a RAM status icon
  - `#{ram_percentage}` - will show RAM percentage (averaged across cores)
  - `#{ram_bg_color}` - will change the background color based on the RAM percentage
@@ -111,6 +115,8 @@ Here are all available options with their default values:
 @cpu_high_bg_color "#[bg=red]" # background color when cpu is high
 
 @cpu_percentage_format "%3.1f%%" # printf format to use to display percentage
+
+@load_per_cpu_core "false" # if set to "true" the load averages will be divided by the number of CPU cores
 ```
 
 Same options are valid with `@gpu`
