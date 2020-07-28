@@ -28,6 +28,9 @@ print_load() {
     sub(/,$/, "", $(NF-2));
     sub(/,$/, "", $(NF-1));
     sub(/,$/, "", $NF);
+    sub(/,/, ".", $(NF-2));
+    sub(/,/, ".", $(NF-1));
+    sub(/,/, ".", $(NF));
     printf "%.2f %.2f %.2f", $(NF-2)/num_cores, $(NF-1)/num_cores, $NF/num_cores
   }')
 
