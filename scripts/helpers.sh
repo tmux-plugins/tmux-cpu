@@ -41,9 +41,11 @@ fcomp() {
 
 load_status() {
   local percentage=$1
-  if fcomp 80 $percentage; then
+  tmux_cpu_high_threshold=$(get_tmux_option "@tmux_cpu_high_threshold" "80")
+  tmux_cpu_medium_threshold=$(get_tmux_option "@tmux_cpu_medium_threshold" "30")
+  if fcomp $tmux_cpu_high_threshold $percentage; then
     echo "high"
-  elif fcomp 30 $percentage && fcomp $percentage 80; then
+  elif fcomp $tmux_cpu_medium_threshold $percentage && fcomp $percentage $tmux_cpu_high_threshold; then
     echo "medium"
   else
     echo "low"
