@@ -112,8 +112,8 @@ Here are all available options with their default values:
 
 @cpu_percentage_format "%3.1f%%" # printf format to use to display percentage
 
-@tmux_cpu_medium_threshold "70" # medium threshold
-@tmux_cpu_high_threshold "90" # high threshold
+@cpu_medium_thresh "30" # medium percentage threshold
+@cpu_high_thresh "80" # high percentage threshold
 ```
 
 Same options are valid with `@gpu`
