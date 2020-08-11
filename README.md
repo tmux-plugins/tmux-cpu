@@ -111,6 +111,9 @@ Here are all available options with their default values:
 @cpu_high_bg_color "#[bg=red]" # background color when cpu is high
 
 @cpu_percentage_format "%3.1f%%" # printf format to use to display percentage
+
+@cpu_medium_thresh "30" # medium percentage threshold
+@cpu_high_thresh "80" # high percentage threshold
 ```
 
 Same options are valid with `@gpu`
