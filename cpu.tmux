@@ -50,7 +50,7 @@ set_tmux_option() {
 do_interpolation() {
   local all_interpolated="$1"
   for ((i=0; i<${#cpu_commands[@]}; i++)); do
-    all_interpolated=${all_interpolated/${cpu_interpolation[$i]}/${cpu_commands[$i]}}
+    all_interpolated=${all_interpolated//${cpu_interpolation[$i]}/${cpu_commands[$i]}}
   done
   echo "$all_interpolated"
 }
