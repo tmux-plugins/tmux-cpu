@@ -74,6 +74,10 @@ This is done by introducing 8 new format strings that can be added to
 - `#{ram_percentage}` - will show RAM percentage (averaged across cores)
 - `#{ram_bg_color}` - will change the background color based on the RAM percentage
 - `#{ram_fg_color}` - will change the foreground color based on the RAM percentage
+- `#{cpu_temp_icon}` - will display a CPU temperature status icon
+- `#{cpu_temp}` - will show CPU temperature (averaged across cores)
+- `#{cpu_temp_bg_color}` - will change the background color based on the CPU temperature
+- `#{cpu_temp_fg_color}` - will change the foreground color based on the CPU temperature
 
 GPU equivalents also exist:
 
@@ -124,6 +128,12 @@ Here are all available options with their default values:
 
 @cpu_medium_thresh "30" # medium percentage threshold
 @cpu_high_thresh "80" # high percentage threshold
+
+@cpu_temp_format "%2.0f" # printf format to use to display temperature
+@cpu_temp_units "C" # supports C & F
+
+@cpu_temp_medium_thresh "80" # medium temperature threshold
+@cpu_temp_high_thresh "90" # high temperature threshold
 ```
 
 Same options are valid with `@gpu`
