@@ -17,10 +17,7 @@ print_gpu_percentage() {
     echo "No GPU"
     return
   fi
-  loads=$(echo "$loads" | sed -nr 's/.*\s([0-9]+)%.*/\1/p')
-  gpus=$(echo "$loads" | wc -l)
-  load=$(echo "$loads" | awk '{count+=$1} END {print count}')
-  echo "$load $gpus" | awk -v format="$gpu_percentage_format" '{printf format, $1/$2}'
+  echo "$loads" | sed -nr 's/.*\s([0-9]+)%.*/\1/p' | awk -v format="$gpu_percentage_format" '{sum+=$1; n+=1} END {printf format, sum/n}'
 }
 
 main() {

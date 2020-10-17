@@ -34,7 +34,6 @@ print_icon() {
 
 main() {
   get_icon_settings
-  local gram_icon=$(print_icon "$1")
-  echo "$gram_icon"
+  print_icon "$1"
 }
 main

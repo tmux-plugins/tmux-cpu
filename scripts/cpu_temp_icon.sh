@@ -34,7 +34,6 @@ print_icon() {
 
 main() {
   get_icon_settings
-  local cpu_temp_icon=$(print_icon "$1")
-  echo "$cpu_temp_icon"
+  print_icon "$1"
 }
 main

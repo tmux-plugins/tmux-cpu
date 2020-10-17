@@ -34,7 +34,6 @@ print_icon() {
 
 main() {
   get_icon_settings
-  local ram_icon=$(print_icon "$1")
-  echo "$ram_icon"
+  print_icon "$1"
 }
 main
