@@ -39,17 +39,16 @@ $ tmux source-file ~/.tmux.conf
 
 If format strings are added to `status-right`, they should now be visible.
 
-### Optional requirement (Linux, BSD, OSX)
+### Optional requirements (Linux, BSD, OSX)
 
-`iostat` or `sar` are the best way to get an accurate CPU percentage.
+- `iostat` or `sar` are the best way to get an accurate CPU percentage.
 A fallback is included using `ps -aux` but could be inaccurate.
-`free` is used for obtaining system RAM status.
-`nvidia-smi` is required for GPU information.
-For OSX, `cuda-smi` is required instead (but only shows GPU memory use rather
-than load).
-
-If 'No GPU' is displayed, it means the script was not able to find `nvidia-smi`/`cuda-smi`.
-Please make sure the appropriate command is installed and in PATH.
+- `free` is used for obtaining system RAM status.
+- `lm-sensors` is used for CPU temperature.
+- `nvidia-smi` is required for GPU information.
+For OSX, `cuda-smi` is required instead (but only shows GPU memory use rather than load).
+If "No GPU" is displayed, it means the script was not able to find `nvidia-smi`/`cuda-smi`.
+Please make sure the appropriate command is installed and in the `$PATH`.
 
 ## Usage
 
@@ -63,7 +62,7 @@ set -g status-right '#{cpu_bg_color} CPU: #{cpu_icon} #{cpu_percentage} | %a %h-
 
 ### Supported Options
 
-This is done by introducing 8 new format strings that can be added to
+This is done by introducing 12 new format strings that can be added to
 `status-right` option:
 
 - `#{cpu_icon}` - will display a CPU status icon
@@ -133,14 +132,18 @@ Here are all available options with their default values:
 @cpu_medium_thresh "30" # medium percentage threshold
 @cpu_high_thresh "80" # high percentage threshold
 
+@ram_(low_icon,high_bg_color,etc...) # same defaults as above
+
 @cpu_temp_format "%2.0f" # printf format to use to display temperature
 @cpu_temp_units "C" # supports C & F
 
 @cpu_temp_medium_thresh "80" # medium temperature threshold
 @cpu_temp_high_thresh "90" # high temperature threshold
+
+@cpu_temp_(low_icon,high_bg_color,etc...) # same defaults as above
 ```
 
-Same options are valid with `@gpu`
+All `@cpu_*` options are valid with `@gpu_*`. Additionally, `@ram_*` options become `@gram_*` for GPU equivalents.
 
 Note that these colors depend on your terminal / X11 config.
 
@@ -151,8 +154,7 @@ set -g @cpu_low_fg_color "#[fg=#00ff00]"
 set -g @cpu_percentage_format "%5.1f%%" # Add left padding
 ```
 
-Don't forget to reload tmux environment (`$ tmux source-file ~/.tmux.conf`)
-after you do this.
+Don't forget to reload the tmux environment (`$ tmux source-file ~/.tmux.conf`) after you do this.
 
 ### Tmux Plugins
 
