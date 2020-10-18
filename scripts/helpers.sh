@@ -57,8 +57,8 @@ load_status() {
 
 temp_status() {
   local temp=$1
-  cpu_medium_thresh=$(get_tmux_option "@cpu_temp_medium_thresh" "80")
-  cpu_high_thresh=$(get_tmux_option "@cpu_temp_high_thresh" "90")
+  cpu_temp_medium_thresh=$(get_tmux_option "@cpu_temp_medium_thresh" "80")
+  cpu_temp_high_thresh=$(get_tmux_option "@cpu_temp_high_thresh" "90")
   if fcomp $cpu_temp_high_thresh $temp; then
     echo "high"
   elif fcomp $cpu_temp_medium_thresh $temp && fcomp $temp $cpu_temp_high_thresh; then
