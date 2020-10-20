@@ -143,7 +143,7 @@ Here are all available options with their default values:
 @cpu_temp_(low_icon,high_bg_color,etc...) # same defaults as above
 ```
 
-All `@cpu_*` options are valid with `@gpu_*`. Additionally, `@ram_*` options become `@gram_*` for GPU equivalents.
+All `@cpu_*` options are valid with `@gpu_*` (except `@cpu_*_thresh` which apply to both CPU and GPU). Additionally, `@ram_*` options become `@gram_*` for GPU equivalents.
 
 Note that these colors depend on your terminal / X11 config.
 
