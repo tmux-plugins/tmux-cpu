@@ -41,10 +41,6 @@ print_load() {
     15)
       output="$(awk '{ print $3 }' <<< "$output")"
       ;;
-    *)
-      echo "Invalid input." >&2
-      return 2
-      ;;
   esac
 
   # Replace commas with dots
