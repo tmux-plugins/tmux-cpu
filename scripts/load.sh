@@ -28,9 +28,6 @@ print_load() {
     sub(/,$/, "", $(NF-2));
     sub(/,$/, "", $(NF-1));
     sub(/,$/, "", $NF);
-    sub(/,/, ".", $(NF-2));
-    sub(/,/, ".", $(NF-1));
-    sub(/,/, ".", $(NF));
     printf "%.2f %.2f %.2f", $(NF-2)/num_cores, $(NF-1)/num_cores, $NF/num_cores
   }')
 
@@ -44,9 +41,14 @@ print_load() {
     15)
       output="$(awk '{ print $3 }' <<< "$output")"
       ;;
+    *)
+      echo "Invalid input." >&2
+      return 2
+      ;;
   esac
 
-  echo -n "$output"
+  # Replace commas with dots
+  echo -n "${output//,/.}"
 }
 
 main() {
