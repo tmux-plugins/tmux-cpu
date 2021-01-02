@@ -8,9 +8,9 @@ cpu_temp_low_fg_color=""
 cpu_temp_medium_fg_color=""
 cpu_temp_high_fg_color=""
 
-cpu_temp_low_default_fg_color="#[bg=green]"
-cpu_temp_medium_default_fg_color="#[bg=yellow]"
-cpu_temp_high_default_fg_color="#[bg=red]"
+cpu_temp_low_default_fg_color="#[fg=green]"
+cpu_temp_medium_default_fg_color="#[fg=yellow]"
+cpu_temp_high_default_fg_color="#[fg=red]"
 
 get_fg_color_settings() {
   cpu_temp_low_fg_color=$(get_tmux_option "@cpu_temp_low_fg_color" "$cpu_temp_low_default_fg_color")
