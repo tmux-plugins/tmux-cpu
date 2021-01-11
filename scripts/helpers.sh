@@ -70,7 +70,11 @@ temp_status() {
 
 cpus_number() {
   if is_linux; then
-    nproc
+    if command_exists "nproc"; then
+      nproc
+    else
+      echo "$(( $(sed -n 's/^processor.*:\s*\([0-9]\+\)/\1/p' /proc/cpuinfo | tail -n 1) + 1 ))"
+    fi
   else
     sysctl -n hw.ncpu
   fi
