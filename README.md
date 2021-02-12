@@ -135,7 +135,7 @@ Here are all available options with their default values:
 @ram_(low_icon,high_bg_color,etc...) # same defaults as above
 
 @cpu_temp_format "%2.0f" # printf format to use to display temperature
-@cpu_temp_units "C" # supports C & F
+@cpu_temp_unit "C" # supports C & F
 
 @cpu_temp_medium_thresh "80" # medium temperature threshold
 @cpu_temp_high_thresh "90" # high temperature threshold
