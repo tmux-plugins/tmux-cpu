@@ -57,7 +57,7 @@ Example:
 
 ```shell
 # in .tmux.conf
-set -g status-right '#{cpu_bg_color} CPU: #{cpu_icon} #{cpu_percentage} | %a %h-%d %H:%M '
+set -g status-right '#{cpu_bg_color} CPU: #{cpu_icon} #{cpu_percentage} | #{ram_bg_color} RAM: #{ram_icon} #{ram_percentage} | #{swap_bg_color} SWAP: #{swap_icon} #{swap_percentage} | %a %h-%d %H:%M '
 ```
 
 ### Supported Options
