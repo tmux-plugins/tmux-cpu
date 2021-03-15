@@ -93,6 +93,13 @@ GPU equivalents also exist:
 - `#{gpu_temp_bg_color}` - will change the background color based on the GPU temperature
 - `#{gpu_temp_fg_color}` - will change the foreground color based on the GPU temperature
 
+SWAP percentage:
+
+- `#{swap_icon}` - will display a SWAP status icon
+- `#{swap_percentage}` - will show SWAP percentage (averaged across cores)
+- `#{swap_bg_color}` - will change the background color based on the SWAP percentage
+- `#{swap_fg_color}` - will change the foreground color based on the SWAP percentage
+
 ## Examples
 
 CPU usage lower than 30%:<br/>
