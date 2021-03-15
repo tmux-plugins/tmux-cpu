@@ -12,7 +12,7 @@ print_swap_percentage() {
   if command_exists "free"; then
     free -t | awk 'NR == 3 {printf("Current Swap Utilization is : %.2f%"), $3/$2*100}'
   elif command_exists "cuda-smi"; then
-    loads=$(cached_eval cuda-smi | sed -nr 's/.*\s([0-9.]+) of ([0-9.]+) MB.*/\1 \2/p' | awk '{print $2-$1" "$2}')
+    free -t | awk 'NR == 3 {printf("Current Swap Utilization is : %.2f%"), $3/$2*100}'
   else
     echo "No SWAP"
     return
