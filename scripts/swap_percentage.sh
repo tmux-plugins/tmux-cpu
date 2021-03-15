@@ -14,7 +14,7 @@ print_swap_percentage() {
   elif command_exists "cuda-smi"; then
     loads=$(cached_eval cuda-smi | sed -nr 's/.*\s([0-9.]+) of ([0-9.]+) MB.*/\1 \2/p' | awk '{print $2-$1" "$2}')
   else
-    echo "No GPU"
+    echo "No SWAP"
     return
   fi
   echo "$loads" | awk -v format="$swap_percentage_format" '{used+=$1; tot+=$2} END {printf format, 100*$1/$2}'
