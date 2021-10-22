@@ -26,6 +26,7 @@ print_cpu_percentage() {
   else
     if is_cygwin; then
       usage="$(cached_eval WMIC cpu get LoadPercentage | grep -Eo '^[0-9]+')"
+      # shellcheck disable=SC2059
       printf "$cpu_percentage_format" "$usage"
     else
       load=$(cached_eval ps -aux | awk '{print $3}' | tail -n+2 | awk '{s+=$1} END {print s}')
