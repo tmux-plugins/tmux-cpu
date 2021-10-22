@@ -37,4 +37,4 @@ main() {
   get_fg_color_settings
   print_fg_color
 }
-main
+main "$@"

@@ -39,4 +39,4 @@ main() {
   get_icon_settings
   print_icon "$1"
 }
-main
+main "$@"

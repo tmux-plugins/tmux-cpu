@@ -31,4 +31,4 @@ print_gpu_temp() {
 main() {
   print_gpu_temp
 }
-main
+main "$@"

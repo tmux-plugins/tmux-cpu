@@ -24,4 +24,4 @@ print_gram_percentage() {
 main() {
   print_gram_percentage
 }
-main
+main "$@"
