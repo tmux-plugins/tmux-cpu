@@ -72,9 +72,12 @@ do_interpolation() {
 }
 
 update_tmux_option() {
-  local option=$1
-  local option_value=$(get_tmux_option "$option")
-  local new_option_value=$(do_interpolation "$option_value")
+  local option
+  local option_value
+  local new_option_value
+  option=$1
+  option_value=$(get_tmux_option "$option")
+  new_option_value=$(do_interpolation "$option_value")
   set_tmux_option "$option" "$new_option_value"
 }
 

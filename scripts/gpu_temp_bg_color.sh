@@ -19,8 +19,10 @@ get_bg_color_settings() {
 }
 
 print_bg_color() {
-  local gpu_temp=$("$CURRENT_DIR"/gpu_temp.sh | sed -e 's/[^0-9.]//')
-  local gpu_temp_status=$(temp_status "$gpu_temp")
+  local gpu_temp
+  local gpu_temp_status
+  gpu_temp=$("$CURRENT_DIR"/gpu_temp.sh | sed -e 's/[^0-9.]//')
+  gpu_temp_status=$(temp_status "$gpu_temp")
   if [ "$gpu_temp_status" == "low" ]; then
     echo "$gpu_temp_low_bg_color"
   elif [ "$gpu_temp_status" == "medium" ]; then

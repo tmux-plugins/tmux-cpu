@@ -2,9 +2,12 @@ export LANG=C
 export LC_ALL=C
 
 get_tmux_option() {
-  local option="$1"
-  local default_value="$2"
-  local option_value="$(tmux show-option -qv "$option")"
+  local option
+  local default_value
+  local option_value
+  option="$1"
+  default_value="$2"
+  option_value="$(tmux show-option -qv "$option")"
   if [ -z "$option_value" ]; then
     option_value="$(tmux show-option -gqv "$option")"
   fi
@@ -59,7 +62,8 @@ load_status() {
 }
 
 temp_status() {
-  local temp=$1
+  local temp
+  temp=$1
   cpu_temp_medium_thresh=$(get_tmux_option "@cpu_temp_medium_thresh" "80")
   cpu_temp_high_thresh=$(get_tmux_option "@cpu_temp_high_thresh" "90")
   if fcomp "$cpu_temp_high_thresh" "$temp"; then
@@ -84,12 +88,14 @@ cpus_number() {
 }
 
 command_exists() {
-  local command="$1"
+  local command
+  command="$1"
   command -v "$command" &>/dev/null
 }
 
 get_tmp_dir() {
-  local tmpdir="${TMPDIR:-${TMP:-${TEMP:-/tmp}}}"
+  local tmpdir
+  tmpdir="${TMPDIR:-${TMP:-${TEMP:-/tmp}}}"
   [ -d "$tmpdir" ] || local tmpdir=~/tmp
   echo "$tmpdir/tmux-$EUID-cpu"
 }
@@ -99,10 +105,13 @@ get_time() {
 }
 
 get_cache_val() {
-  local key="$1"
+  local key
+  local timeout
+  local cache
+  key="$1"
   # seconds after which cache is invalidated
-  local timeout="${2:-2}"
-  local cache="$(get_tmp_dir)/$key"
+  timeout="${2:-2}"
+  cache="$(get_tmp_dir)/$key"
   if [ -f "$cache" ]; then
     awk -v cache="$(head -n1 "$cache")" -v timeout="$timeout" -v now=$(get_time) \
       'BEGIN {if (now - timeout < cache) exit 0; exit 1}' &&
@@ -111,9 +120,12 @@ get_cache_val() {
 }
 
 put_cache_val() {
-  local key="$1"
-  local val="${@:2}"
-  local tmpdir="$(get_tmp_dir)"
+  local key
+  local val
+  local tmpdir
+  key="$1"
+  val="${@:2}"
+  tmpdir="$(get_tmp_dir)"
   [ ! -d "$tmpdir" ] && mkdir -p "$tmpdir" && chmod 0700 "$tmpdir"
   echo "$(get_time)" >"$tmpdir/$key"
   echo -n "$val" >>"$tmpdir/$key"
@@ -121,9 +133,12 @@ put_cache_val() {
 }
 
 cached_eval() {
-  local command="$1"
-  local key="$(basename "$command")"
-  local val="$(get_cache_val "$key")"
+  local command
+  local key
+  local val
+  command="$1"
+  key="$(basename "$command")"
+  val="$(get_cache_val "$key")"
   if [ -z "$val" ]; then
     put_cache_val "$key" "$($command "${@:2}")"
   else
