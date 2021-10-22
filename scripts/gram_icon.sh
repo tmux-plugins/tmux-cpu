@@ -21,13 +21,13 @@ get_icon_settings() {
 }
 
 print_icon() {
-  local gram_percentage=$($CURRENT_DIR/gram_percentage.sh | sed -e 's/%//')
-  local gram_load_status=$(load_status $gram_percentage)
-  if [ $gram_load_status == "low" ]; then
+  local gram_percentage=$("$CURRENT_DIR"/gram_percentage.sh | sed -e 's/%//')
+  local gram_load_status=$(load_status "$gram_percentage")
+  if [ "$gram_load_status" == "low" ]; then
     echo "$gram_low_icon"
-  elif [ $gram_load_status == "medium" ]; then
+  elif [ "$gram_load_status" == "medium" ]; then
     echo "$gram_medium_icon"
-  elif [ $gram_load_status == "high" ]; then
+  elif [ "$gram_load_status" == "high" ]; then
     echo "$gram_high_icon"
   fi
 }

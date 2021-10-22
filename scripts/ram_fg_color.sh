@@ -19,13 +19,13 @@ get_fg_color_settings() {
 }
 
 print_fg_color() {
-  local ram_percentage=$($CURRENT_DIR/ram_percentage.sh | sed -e 's/%//')
-  local ram_load_status=$(load_status $ram_percentage)
-  if [ $ram_load_status == "low" ]; then
+  local ram_percentage=$("$CURRENT_DIR"/ram_percentage.sh | sed -e 's/%//')
+  local ram_load_status=$(load_status "$ram_percentage")
+  if [ "$ram_load_status" == "low" ]; then
     echo "$ram_low_fg_color"
-  elif [ $ram_load_status == "medium" ]; then
+  elif [ "$ram_load_status" == "medium" ]; then
     echo "$ram_medium_fg_color"
-  elif [ $ram_load_status == "high" ]; then
+  elif [ "$ram_load_status" == "high" ]; then
     echo "$ram_high_fg_color"
   fi
 }

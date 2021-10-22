@@ -21,13 +21,13 @@ get_icon_settings() {
 }
 
 print_icon() {
-  local cpu_temp=$($CURRENT_DIR/cpu_temp.sh | sed -e 's/[^0-9.]//')
-  local cpu_temp_status=$(temp_status $cpu_temp)
-  if [ $cpu_temp_status == "low" ]; then
+  local cpu_temp=$("$CURRENT_DIR"/cpu_temp.sh | sed -e 's/[^0-9.]//')
+  local cpu_temp_status=$(temp_status "$cpu_temp")
+  if [ "$cpu_temp_status" == "low" ]; then
     echo "$cpu_temp_low_icon"
-  elif [ $cpu_temp_status == "medium" ]; then
+  elif [ "$cpu_temp_status" == "medium" ]; then
     echo "$cpu_temp_medium_icon"
-  elif [ $cpu_temp_status == "high" ]; then
+  elif [ "$cpu_temp_status" == "high" ]; then
     echo "$cpu_temp_high_icon"
   fi
 }

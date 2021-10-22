@@ -19,13 +19,13 @@ get_bg_color_settings() {
 }
 
 print_bg_color() {
-  local gpu_percentage=$($CURRENT_DIR/gpu_percentage.sh | sed -e 's/%//')
-  local gpu_load_status=$(load_status $gpu_percentage)
-  if [ $gpu_load_status == "low" ]; then
+  local gpu_percentage=$("$CURRENT_DIR"/gpu_percentage.sh | sed -e 's/%//')
+  local gpu_load_status=$(load_status "$gpu_percentage")
+  if [ "$gpu_load_status" == "low" ]; then
     echo "$gpu_low_bg_color"
-  elif [ $gpu_load_status == "medium" ]; then
+  elif [ "$gpu_load_status" == "medium" ]; then
     echo "$gpu_medium_bg_color"
-  elif [ $gpu_load_status == "high" ]; then
+  elif [ "$gpu_load_status" == "high" ]; then
     echo "$gpu_high_bg_color"
   fi
 }

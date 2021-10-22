@@ -42,16 +42,16 @@ is_linux_iostat() {
 
 # is second float bigger or equal?
 fcomp() {
-  awk -v n1=$1 -v n2=$2 'BEGIN {if (n1<=n2) exit 0; exit 1}'
+  awk -v n1="$1" -v n2="$2" 'BEGIN {if (n1<=n2) exit 0; exit 1}'
 }
 
 load_status() {
   local percentage=$1
   cpu_medium_thresh=$(get_tmux_option "@cpu_medium_thresh" "30")
   cpu_high_thresh=$(get_tmux_option "@cpu_high_thresh" "80")
-  if fcomp $cpu_high_thresh $percentage; then
+  if fcomp "$cpu_high_thresh" "$percentage"; then
     echo "high"
-  elif fcomp $cpu_medium_thresh $percentage && fcomp $percentage $cpu_high_thresh; then
+  elif fcomp "$cpu_medium_thresh" "$percentage" && fcomp "$percentage" "$cpu_high_thresh"; then
     echo "medium"
   else
     echo "low"
@@ -62,9 +62,9 @@ temp_status() {
   local temp=$1
   cpu_temp_medium_thresh=$(get_tmux_option "@cpu_temp_medium_thresh" "80")
   cpu_temp_high_thresh=$(get_tmux_option "@cpu_temp_high_thresh" "90")
-  if fcomp $cpu_temp_high_thresh $temp; then
+  if fcomp "$cpu_temp_high_thresh" "$temp"; then
     echo "high"
-  elif fcomp $cpu_temp_medium_thresh $temp && fcomp $temp $cpu_temp_high_thresh; then
+  elif fcomp "$cpu_temp_medium_thresh" "$temp" && fcomp "$temp" "$cpu_temp_high_thresh"; then
     echo "medium"
   else
     echo "low"
@@ -104,7 +104,7 @@ get_cache_val() {
   local timeout="${2:-2}"
   local cache="$(get_tmp_dir)/$key"
   if [ -f "$cache" ]; then
-    awk -v cache="$(head -n1 "$cache")" -v timeout=$timeout -v now=$(get_time) \
+    awk -v cache="$(head -n1 "$cache")" -v timeout="$timeout" -v now=$(get_time) \
       'BEGIN {if (now - timeout < cache) exit 0; exit 1}' &&
       tail -n+2 "$cache"
   fi

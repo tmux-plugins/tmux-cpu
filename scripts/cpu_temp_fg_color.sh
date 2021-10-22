@@ -19,13 +19,13 @@ get_fg_color_settings() {
 }
 
 print_fg_color() {
-  local cpu_temp=$($CURRENT_DIR/cpu_temp.sh | sed -e 's/[^0-9.]//')
-  local cpu_temp_status=$(temp_status $cpu_temp)
-  if [ $cpu_temp_status == "low" ]; then
+  local cpu_temp=$("$CURRENT_DIR"/cpu_temp.sh | sed -e 's/[^0-9.]//')
+  local cpu_temp_status=$(temp_status "$cpu_temp")
+  if [ "$cpu_temp_status" == "low" ]; then
     echo "$cpu_temp_low_fg_color"
-  elif [ $cpu_temp_status == "medium" ]; then
+  elif [ "$cpu_temp_status" == "medium" ]; then
     echo "$cpu_temp_medium_fg_color"
-  elif [ $cpu_temp_status == "high" ]; then
+  elif [ "$cpu_temp_status" == "high" ]; then
     echo "$cpu_temp_high_fg_color"
   fi
 }
