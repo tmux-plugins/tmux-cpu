@@ -47,11 +47,12 @@ fcomp() {
 
 load_status() {
   local percentage=$1
-  cpu_medium_thresh=$(get_tmux_option "@cpu_medium_thresh" "30")
-  cpu_high_thresh=$(get_tmux_option "@cpu_high_thresh" "80")
-  if fcomp $cpu_high_thresh $percentage; then
+  local prefix=$2
+  medium_thresh=$(get_tmux_option "@${prefix}_medium_thresh" "30")
+  high_thresh=$(get_tmux_option "@${prefix}_high_thresh" "80")
+  if fcomp $high_thresh $percentage; then
     echo "high"
-  elif fcomp $cpu_medium_thresh $percentage && fcomp $percentage $cpu_high_thresh; then
+  elif fcomp $medium_thresh $percentage && fcomp $percentage $high_thresh; then
     echo "medium"
   else
     echo "low"

@@ -22,7 +22,7 @@ get_icon_settings() {
 
 print_icon() {
   local cpu_percentage=$($CURRENT_DIR/cpu_percentage.sh | sed -e 's/%//')
-  local load_status=$(load_status $cpu_percentage)
+  local load_status=$(load_status $cpu_percentage "cpu")
   if [ $load_status == "low" ]; then
     echo "$cpu_low_icon"
   elif [ $load_status == "medium" ]; then
