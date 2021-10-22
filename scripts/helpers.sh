@@ -19,19 +19,19 @@ get_tmux_option() {
 }
 
 is_osx() {
-  [ $(uname) == "Darwin" ]
+  [ "$(uname)" == "Darwin" ]
 }
 
 is_freebsd() {
-  [ $(uname) == "FreeBSD" ]
+  [ "$(uname)" == "FreeBSD" ]
 }
 
 is_openbsd() {
-  [ $(uname) == "OpenBSD" ]
+  [ "$(uname)" == "OpenBSD" ]
 }
 
 is_linux() {
-  [ $(uname) == "Linux" ]
+  [ "$(uname)" == "Linux" ]
 }
 
 is_cygwin() {
@@ -113,7 +113,7 @@ get_cache_val() {
   timeout="${2:-2}"
   cache="$(get_tmp_dir)/$key"
   if [ -f "$cache" ]; then
-    awk -v cache="$(head -n1 "$cache")" -v timeout="$timeout" -v now=$(get_time) \
+    awk -v cache="$(head -n1 "$cache")" -v timeout="$timeout" -v now="$(get_time)" \
       'BEGIN {if (now - timeout < cache) exit 0; exit 1}' &&
       tail -n+2 "$cache"
   fi
