@@ -38,8 +38,8 @@ print_ram_percentage() {
         sum_macos_vm_stats
     )
 
-    used=$(($used_and_cached - $cached))
-    total=$(($used_and_cached + $free))
+    used=$((used_and_cached - cached))
+    total=$((used_and_cached + free))
 
     echo "$used $total" | awk -v format="$ram_percentage_format" '{printf(format, 100*$1/$2)}'
   fi
