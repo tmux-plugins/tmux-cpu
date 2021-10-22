@@ -32,12 +32,12 @@ is_linux() {
 }
 
 is_cygwin() {
-  command -v WMIC &> /dev/null
+  command -v WMIC &>/dev/null
 }
 
 is_linux_iostat() {
   # Bug in early versions of linux iostat -V return error code
-  iostat -c &> /dev/null
+  iostat -c &>/dev/null
 }
 
 # is second float bigger or equal?
@@ -76,7 +76,7 @@ cpus_number() {
     if command_exists "nproc"; then
       nproc
     else
-      echo "$(( $(sed -n 's/^processor.*:\s*\([0-9]\+\)/\1/p' /proc/cpuinfo | tail -n 1) + 1 ))"
+      echo "$(($(sed -n 's/^processor.*:\s*\([0-9]\+\)/\1/p' /proc/cpuinfo | tail -n 1) + 1))"
     fi
   else
     sysctl -n hw.ncpu
@@ -85,7 +85,7 @@ cpus_number() {
 
 command_exists() {
   local command="$1"
-  command -v "$command" &> /dev/null
+  command -v "$command" &>/dev/null
 }
 
 get_tmp_dir() {
@@ -98,29 +98,29 @@ get_time() {
   date +%s.%N
 }
 
-get_cache_val(){
+get_cache_val() {
   local key="$1"
   # seconds after which cache is invalidated
   local timeout="${2:-2}"
   local cache="$(get_tmp_dir)/$key"
   if [ -f "$cache" ]; then
     awk -v cache="$(head -n1 "$cache")" -v timeout=$timeout -v now=$(get_time) \
-      'BEGIN {if (now - timeout < cache) exit 0; exit 1}' \
-      && tail -n+2 "$cache"
+      'BEGIN {if (now - timeout < cache) exit 0; exit 1}' &&
+      tail -n+2 "$cache"
   fi
 }
 
-put_cache_val(){
+put_cache_val() {
   local key="$1"
   local val="${@:2}"
   local tmpdir="$(get_tmp_dir)"
   [ ! -d "$tmpdir" ] && mkdir -p "$tmpdir" && chmod 0700 "$tmpdir"
-  echo "$(get_time)" > "$tmpdir/$key"
-  echo -n "$val" >> "$tmpdir/$key"
+  echo "$(get_time)" >"$tmpdir/$key"
+  echo -n "$val" >>"$tmpdir/$key"
   echo -n "$val"
 }
 
-cached_eval(){
+cached_eval() {
   local command="$1"
   local key="$(basename "$command")"
   local val="$(get_cache_val "$key")"

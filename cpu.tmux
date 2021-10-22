@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 source "$CURRENT_DIR/scripts/helpers.sh"
 
@@ -65,7 +65,7 @@ set_tmux_option() {
 
 do_interpolation() {
   local all_interpolated="$1"
-  for ((i=0; i<${#cpu_commands[@]}; i++)); do
+  for ((i = 0; i < ${#cpu_commands[@]}; i++)); do
     all_interpolated=${all_interpolated//${cpu_interpolation[$i]}/${cpu_commands[$i]}}
   done
   echo "$all_interpolated"
