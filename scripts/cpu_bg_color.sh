@@ -23,7 +23,7 @@ print_bg_color() {
   local cpu_percentage
   local load_status
   cpu_percentage=$("$CURRENT_DIR"/cpu_percentage.sh | sed -e 's/%//')
-  load_status=$(load_status "$cpu_percentage")
+  load_status=$(load_status "$cpu_percentage" "cpu")
   if [ "$load_status" == "low" ]; then
     echo "$cpu_low_bg_color"
   elif [ "$load_status" == "medium" ]; then

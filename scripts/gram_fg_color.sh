@@ -23,7 +23,7 @@ print_fg_color() {
   local gram_percentage
   local gram_load_status
   gram_percentage=$("$CURRENT_DIR"/gram_percentage.sh | sed -e 's/%//')
-  gram_load_status=$(load_status "$gram_percentage")
+  gram_load_status=$(load_status "$gram_percentage" "gram")
   if [ "$gram_load_status" == "low" ]; then
     echo "$gram_low_fg_color"
   elif [ "$gram_load_status" == "medium" ]; then
