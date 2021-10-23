@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# shellcheck source=scripts/helpers.sh
 source "$CURRENT_DIR/helpers.sh"
 
 gram_percentage_format="%3.1f%%"
@@ -23,4 +24,4 @@ print_gram_percentage() {
 main() {
   print_gram_percentage
 }
-main
+main "$@"

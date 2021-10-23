@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 source "$CURRENT_DIR/scripts/helpers.sh"
 
@@ -65,16 +65,19 @@ set_tmux_option() {
 
 do_interpolation() {
   local all_interpolated="$1"
-  for ((i=0; i<${#cpu_commands[@]}; i++)); do
+  for ((i = 0; i < ${#cpu_commands[@]}; i++)); do
     all_interpolated=${all_interpolated//${cpu_interpolation[$i]}/${cpu_commands[$i]}}
   done
   echo "$all_interpolated"
 }
 
 update_tmux_option() {
-  local option=$1
-  local option_value=$(get_tmux_option "$option")
-  local new_option_value=$(do_interpolation "$option_value")
+  local option
+  local option_value
+  local new_option_value
+  option=$1
+  option_value=$(get_tmux_option "$option")
+  new_option_value=$(do_interpolation "$option_value")
   set_tmux_option "$option" "$new_option_value"
 }
 

@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
 
-CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# shellcheck source=scripts/helpers.sh
 source "$CURRENT_DIR/helpers.sh"
 
 ram_percentage_format="%3.1f%%"
 
 sum_macos_vm_stats() {
-  grep -Eo '[0-9]+' \
-  | awk '{ a += $1 * 4096 } END { print a }' 
+  grep -Eo '[0-9]+' |
+    awk '{ a += $1 * 4096 } END { print a }'
 }
 
 print_ram_percentage() {
@@ -20,23 +21,26 @@ print_ram_percentage() {
     # page size of 4096 bytes
     stats="$(cached_eval vm_stat)"
 
-    used_and_cached=$(echo "$stats" \
-      | grep -E "(Pages active|Pages inactive|Pages speculative|Pages wired down|Pages occupied by compressor)" \
-      | sum_macos_vm_stats \
+    used_and_cached=$(
+      echo "$stats" |
+        grep -E "(Pages active|Pages inactive|Pages speculative|Pages wired down|Pages occupied by compressor)" |
+        sum_macos_vm_stats
     )
 
-    cached=$(echo "$stats" \
-      | grep -E "(Pages purgeable|File-backed pages)" \
-      | sum_macos_vm_stats \
+    cached=$(
+      echo "$stats" |
+        grep -E "(Pages purgeable|File-backed pages)" |
+        sum_macos_vm_stats
     )
 
-    free=$(echo "$stats" \
-      | grep -E "(Pages free)" \
-      | sum_macos_vm_stats \
+    free=$(
+      echo "$stats" |
+        grep -E "(Pages free)" |
+        sum_macos_vm_stats
     )
 
-    used=$(($used_and_cached - $cached))
-    total=$(($used_and_cached + $free))
+    used=$((used_and_cached - cached))
+    total=$((used_and_cached + free))
 
     echo "$used $total" | awk -v format="$ram_percentage_format" '{printf(format, 100*$1/$2)}'
   fi

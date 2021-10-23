@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# shellcheck source=scripts/helpers.sh
 source "$CURRENT_DIR/helpers.sh"
 
 gpu_low_fg_color=""
@@ -19,13 +20,15 @@ get_fg_color_settings() {
 }
 
 print_fg_color() {
-  local gpu_percentage=$($CURRENT_DIR/gpu_percentage.sh | sed -e 's/%//')
-  local gpu_load_status=$(load_status $gpu_percentage "gpu")
-  if [ $gpu_load_status == "low" ]; then
+  local gpu_percentage
+  local gpu_load_status
+  gpu_percentage=$("$CURRENT_DIR"/gpu_percentage.sh | sed -e 's/%//')
+  gpu_load_status=$(load_status "$gpu_percentage" "gpu")
+  if [ "$gpu_load_status" == "low" ]; then
     echo "$gpu_low_fg_color"
-  elif [ $gpu_load_status == "medium" ]; then
+  elif [ "$gpu_load_status" == "medium" ]; then
     echo "$gpu_medium_fg_color"
-  elif [ $gpu_load_status == "high" ]; then
+  elif [ "$gpu_load_status" == "high" ]; then
     echo "$gpu_high_fg_color"
   fi
 }
@@ -34,4 +37,4 @@ main() {
   get_fg_color_settings
   print_fg_color
 }
-main
+main "$@"

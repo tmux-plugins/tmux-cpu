@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 
-CURRENT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+CURRENT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+# shellcheck source=scripts/helpers.sh
 source "$CURRENT_DIR/helpers.sh"
 
 cpu_low_bg_color=""
@@ -19,13 +20,15 @@ get_bg_color_settings() {
 }
 
 print_bg_color() {
-  local cpu_percentage=$($CURRENT_DIR/cpu_percentage.sh | sed -e 's/%//')
-  local load_status=$(load_status $cpu_percentage "cpu")
-  if [ $load_status == "low" ]; then
+  local cpu_percentage
+  local load_status
+  cpu_percentage=$("$CURRENT_DIR"/cpu_percentage.sh | sed -e 's/%//')
+  load_status=$(load_status "$cpu_percentage" "cpu")
+  if [ "$load_status" == "low" ]; then
     echo "$cpu_low_bg_color"
-  elif [ $load_status == "medium" ]; then
+  elif [ "$load_status" == "medium" ]; then
     echo "$cpu_medium_bg_color"
-  elif [ $load_status == "high" ]; then
+  elif [ "$load_status" == "high" ]; then
     echo "$cpu_high_bg_color"
   fi
 }
@@ -34,4 +37,4 @@ main() {
   get_bg_color_settings
   print_bg_color
 }
-main
+main "$@"
