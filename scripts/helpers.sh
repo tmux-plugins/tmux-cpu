@@ -127,7 +127,7 @@ put_cache_val() {
   local val
   local tmpdir
   key="$1"
-  val="$2"
+  val="${*:2}"
   tmpdir="$(get_tmp_dir)"
   [ ! -d "$tmpdir" ] && mkdir -p "$tmpdir" && chmod 0700 "$tmpdir"
   get_time >"$tmpdir/$key"
