@@ -18,7 +18,7 @@ print_gram_percentage() {
     echo "No GPU"
     return
   fi
-  echo "$loads" | awk -v format="$gram_percentage_format" '{used+=$1; tot+=$2} END {printf format, 100*$1/$2}'
+  echo "$loads" | awk -v format="$gram_percentage_format" '{used+=$1; tot+=$2} END {printf format, 100*used/tot}'
 }
 
 main() {
