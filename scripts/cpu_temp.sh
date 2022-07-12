@@ -18,7 +18,15 @@ print_cpu_temp() {
     else
       val="$(sensors)"
     fi
-    echo "$val" | sed -e 's/^Tccd/Core /' | awk -v format="$cpu_temp_format$cpu_temp_unit" '/^Core [0-9]+/ {gsub("[^0-9.]", "", $3); sum+=$3; n+=1} END {printf(format, sum/n)}'
+    if [[ $val =~ Tcdd ]]; then
+      echo "$val" | sed -e 's/^Tccd/Core /' | awk -v format="$cpu_temp_format$cpu_temp_unit" '/^Core [0-9]+/ {gsub("[^0-9.]", "", $3); sum+=$3; n+=1} END {printf(format, sum/n)}'
+    elif [[ $val =~ Tctl ]]; then
+      echo "$val" | sed -n 's/Tctl:\s*+//p' | tr -d " "
+    elif [[ $val =~ Tdie ]]; then
+      echo "$val" | sed -n 's/Tdie:\s*+//p' | tr -d " "
+    else
+      echo "NA"
+    fi    
   fi
 }
 
