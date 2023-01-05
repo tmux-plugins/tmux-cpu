@@ -130,8 +130,10 @@ put_cache_val() {
   val="${*:2}"
   tmpdir="$(get_tmp_dir)"
   [ ! -d "$tmpdir" ] && mkdir -p "$tmpdir" && chmod 0700 "$tmpdir"
-  get_time >"$tmpdir/$key"
-  echo -n "$val" >>"$tmpdir/$key"
+  (
+    get_time
+    echo -n "$val"
+  ) >"$tmpdir/$key"
   echo -n "$val"
 }
 
