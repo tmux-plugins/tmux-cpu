@@ -161,8 +161,8 @@ Don't forget to reload the tmux environment (`$ tmux source-file ~/.tmux.conf`) 
 If you're running on WSL you can set these options to get the CPU / RAM values from the Windows host system instead:
 
 ```shell
-@cpu_wsl 'true' # true/false
-@ram_wsl 'true  # true/false
+@cpu_wsl_host 'true' # true/false
+@ram_wsl_host 'true  # true/false
 ```
 
 Note this only works if `$WSL_DISTRO_NAME` is also set, which is done by default inside WSL.
