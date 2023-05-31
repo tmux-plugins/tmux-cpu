@@ -10,7 +10,7 @@ cpu_percentage_format="%3.1f%%"
 print_cpu_percentage() {
   cpu_percentage_format=$(get_tmux_option "@cpu_percentage_format" "$cpu_percentage_format")
 
-  if $(get_tmux_option @cpu_wsl) == "true" ; then
+  if $(get_tmux_option @cpu_wsl) == "true" && test -n "${WSL_DISTRO_NAME}" ; then
       load="$(cached_eval wmic.exe cpu get LoadPercentage | grep -Eo '^[0-9]+')"
       echo "$load" | awk -v format="$cpu_percentage_format" '{printf format, $1}'
   elif command_exists "iostat"; then

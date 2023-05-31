@@ -165,6 +165,8 @@ If you're running on WSL you can set these options to get the CPU / RAM values f
 @ram_wsl 'true  # true/false
 ```
 
+Note this only works if `$WSL_DISTRO_NAME` is also set, which is done by default inside WSL.
+
 ### Tmux Plugins
 
 This plugin is part of the [tmux-plugins](https://github.com/tmux-plugins) organisation. Checkout plugins as [battery](https://github.com/tmux-plugins/tmux-battery), [logging](https://github.com/tmux-plugins/tmux-logging), [online status](https://github.com/tmux-plugins/tmux-online-status), and many more over at the [tmux-plugins](https://github.com/tmux-plugins) organisation page.

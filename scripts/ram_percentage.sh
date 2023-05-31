@@ -15,7 +15,7 @@ sum_macos_vm_stats() {
 print_ram_percentage() {
   ram_percentage_format=$(get_tmux_option "@ram_percentage_format" "$ram_percentage_format")
 
-  if $(get_tmux_option @ram_wsl) == "true" ; then
+  if $(get_tmux_option @ram_wsl) == "true" && test -n "${WSL_DISTRO_NAME}"; then
 
     # TotalPhysicalMemory is in bytes, but FreePhysicalMemory is in KiB
     total=$(wmic.exe ComputerSystem get TotalPhysicalMemory | awk '/^[0-9]/{print $1/1024}')
