@@ -19,8 +19,8 @@ print_ram_percentage() {
 
     # TotalPhysicalMemory is in bytes, but FreePhysicalMemory is in KiB
     total=$(wmic.exe ComputerSystem get TotalPhysicalMemory | awk '/^[0-9]/{print $1/1024}')
-    used=$(wmic.exe OS get FreePhysicalMemory | awk '/^[0-9]/{print $1}')
-
+    free=$(wmic.exe OS get freevirtualmemory | awk '/^[0-9]/{print $1}')
+    used=$(($total - $free))
     echo "$used $total" | awk -v format="$ram_percentage_format" '{printf(format, 100*$1/$2)}'
 
   elif command_exists "free"; then
