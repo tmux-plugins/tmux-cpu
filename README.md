@@ -156,6 +156,15 @@ set -g @cpu_percentage_format "%5.1f%%" # Add left padding
 
 Don't forget to reload the tmux environment (`$ tmux source-file ~/.tmux.conf`) after you do this.
 
+### WSL support
+
+If you're running on WSL you can set these options to get the CPU / RAM values from the Windows host system instead:
+
+```shell
+@cpu_wsl 'true' # true/false
+@ram_wsl 'true  # true/false
+```
+
 ### Tmux Plugins
 
 This plugin is part of the [tmux-plugins](https://github.com/tmux-plugins) organisation. Checkout plugins as [battery](https://github.com/tmux-plugins/tmux-battery), [logging](https://github.com/tmux-plugins/tmux-logging), [online status](https://github.com/tmux-plugins/tmux-online-status), and many more over at the [tmux-plugins](https://github.com/tmux-plugins) organisation page.
