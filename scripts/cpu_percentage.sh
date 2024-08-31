@@ -29,6 +29,11 @@ print_cpu_percentage() {
       # shellcheck disable=SC2059
       printf "$cpu_percentage_format" "$usage"
     else
+    if is_osx; then
+      load=$(cached_eval ps aux | awk '{print $3}' | tail -n+2 | awk '{s+=$1} END {print s}')
+      cpus=$(cpus_number)
+      echo "$load $cpus" | awk -v format="$cpu_percentage_format" '{printf format, $1/$2}'
+    else
       load=$(cached_eval ps -aux | awk '{print $3}' | tail -n+2 | awk '{s+=$1} END {print s}')
       cpus=$(cpus_number)
       echo "$load $cpus" | awk -v format="$cpu_percentage_format" '{printf format, $1/$2}'
