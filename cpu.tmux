@@ -44,6 +44,8 @@ cpu_commands=(
   "#($CURRENT_DIR/scripts/ram_bg_color.sh)"
   "#($CURRENT_DIR/scripts/ram_fg_color.sh)"
   "#($CURRENT_DIR/scripts/gram_percentage.sh)"
+  "#($CURRENT_DIR/scripts/gram_total.sh)"
+  "#($CURRENT_DIR/scripts/gram_used.sh)"
   "#($CURRENT_DIR/scripts/gram_icon.sh)"
   "#($CURRENT_DIR/scripts/gram_bg_color.sh)"
   "#($CURRENT_DIR/scripts/gram_fg_color.sh)"
