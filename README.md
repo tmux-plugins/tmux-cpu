@@ -42,7 +42,7 @@ If format strings are added to `status-right`, they should now be visible.
 ### Optional requirements (Linux, BSD, OSX)
 
 - `iostat` or `sar` are the best way to get an accurate CPU percentage.
-A fallback is included using `ps -aux` but could be inaccurate.
+A fallback is included using `ps aux` but could be inaccurate.
 - `free` is used for obtaining system RAM status.
 - `lm-sensors` is used for CPU temperature.
 - `nvidia-smi` is required for GPU information.
