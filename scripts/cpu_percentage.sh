@@ -17,7 +17,7 @@ print_cpu_percentage() {
     elif is_osx; then
       cached_eval iostat -c 2 disk0 | sed '/^\s*$/d' | tail -n 1 | awk -v format="$cpu_percentage_format" '{usage=100-$6} END {printf(format, usage)}' | sed 's/,/./'
     elif is_freebsd || is_openbsd; then
-      cached_eval iostat -c 2 | sed '/^\s*$/d' | tail -n 1 | awk -v format="$cpu_percentage_format" '{usage=100-$NF} END {printf(format, usage)}' | sed 's/,/./'
+      cached_eval iostat -c 2 | sed '/^[[:space:]]*$/d' | tail -n 1 | awk -v format="$cpu_percentage_format" '{usage=100-$NF} END {printf(format, usage)}' | sed 's/,/./'
     else
       echo "Unknown iostat version please create an issue"
     fi

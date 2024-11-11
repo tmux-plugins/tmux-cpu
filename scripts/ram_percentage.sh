@@ -17,6 +17,8 @@ print_ram_percentage() {
 
   if command_exists "free"; then
     cached_eval free | awk -v format="$ram_percentage_format" '$1 ~ /Mem/ {printf(format, 100*$3/$2)}'
+  elif command_exists "freecolor"; then # freebsd: install freecolor first: $ pkg install freecolor
+    cached_eval freecolor -m -o | awk -v format="$ram_percentage_format" '$1 ~ /Mem/ {printf(format, 100*$3/$2)}'
   elif command_exists "vm_stat"; then
     # page size of 4096 bytes
     stats="$(cached_eval vm_stat)"

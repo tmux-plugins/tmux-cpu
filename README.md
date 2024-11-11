@@ -70,7 +70,8 @@ This is done by introducing 12 new format strings that can be added to
 - `#{cpu_bg_color}` - will change the background color based on the CPU percentage
 - `#{cpu_fg_color}` - will change the foreground color based on the CPU percentage
 - `#{ram_icon}` - will display a RAM status icon
-- `#{ram_percentage}` - will show RAM percentage (averaged across cores)
+- `#{ram_percentage}` - will show RAM percentage (averaged across cores)\
+  (freebsd user will need to install `freecolor`: `$ pkg install freecolor`)
 - `#{ram_bg_color}` - will change the background color based on the RAM percentage
 - `#{ram_fg_color}` - will change the foreground color based on the RAM percentage
 - `#{cpu_temp_icon}` - will display a CPU temperature status icon
