@@ -104,7 +104,7 @@ get_tmp_dir() {
 }
 
 get_time() {
-  date +%s.%N
+  perl -MTime::HiRes=time -e 'printf "%.9f\n", time'
 }
 
 get_cache_val() {
