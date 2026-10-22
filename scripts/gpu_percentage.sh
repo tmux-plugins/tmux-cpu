@@ -14,6 +14,16 @@ print_gpu_percentage() {
     loads=$(cached_eval nvidia-smi)
   elif command_exists "cuda-smi"; then
     loads=$(cached_eval cuda-smi)
+  elif is_osx && command_exists "powermetrics"; then
+    loads=$(cached_eval sudo -n /usr/bin/powermetrics --samplers gpu_power -i 1000 -n 1 2>/dev/null)
+    if [ -z "$loads" ]; then
+      echo "GPU: sudo required"
+      return
+    fi
+    echo "$loads" |
+      sed -nE 's/.*GPU HW active residency:[[:space:]]*([0-9]+([.][0-9]+)?)%.*/\1/p' |
+      awk -v format="$gpu_percentage_format" '{sum+=$1; n+=1} END {if (n > 0) printf format, sum/n}'
+    return
   else
     echo "No GPU"
     return
