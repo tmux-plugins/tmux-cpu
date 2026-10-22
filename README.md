@@ -46,8 +46,9 @@ A fallback is included using `ps aux` but could be inaccurate.
 - `free` is used for obtaining system RAM status.
 - `lm-sensors` is used for CPU temperature.
 - `nvidia-smi` is required for GPU information.
-For OSX, `cuda-smi` is required instead (but only shows GPU memory use rather than load).
-If "No GPU" is displayed, it means the script was not able to find `nvidia-smi`/`cuda-smi`.
+- `rocm-smi` is supported for GPU usage percentage on AMD GPUs on Linux.
+- For OSX, `cuda-smi` is required instead (but only shows GPU memory use rather than load).
+If "No GPU" is displayed, it means the script was not able to find a supported GPU utility.
 Please make sure the appropriate command is installed and in the `$PATH`.
 
 ## Usage

@@ -14,6 +14,12 @@ print_gpu_percentage() {
     loads=$(cached_eval nvidia-smi)
   elif command_exists "cuda-smi"; then
     loads=$(cached_eval cuda-smi)
+  elif command_exists "rocm-smi"; then
+    loads=$(cached_eval rocm-smi --showuse)
+    echo "$loads" |
+      sed -nr 's/.*GPU use \(%\):\s*([0-9]+([.][0-9]+)?).*/\1/p' |
+      awk -v format="$gpu_percentage_format" '{sum+=$1; n+=1} END {if (n > 0) printf format, sum/n}'
+    return
   else
     echo "No GPU"
     return
